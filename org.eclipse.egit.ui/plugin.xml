@@ -3205,6 +3205,13 @@
          </enablement>
          <commonSorter
                class="org.eclipse.egit.ui.internal.repository.tree.RepositoriesViewSorter">
+            <parentExpression>
+              <not>
+                <instanceof
+                     value="org.eclipse.egit.ui.internal.repository.tree.TagsNode">
+                </instanceof>
+              </not>
+            </parentExpression>
          </commonSorter>
          <dropAssistant
                class="org.eclipse.egit.ui.internal.repository.DropAdapterAssistant"
@@ -3217,6 +3224,19 @@
          <actionProvider
                class="org.eclipse.egit.ui.internal.repository.RepositoriesViewActionProvider">
          </actionProvider>
+      </navigatorContent>
+      <navigatorContent
+            id="org.eclipse.egit.ui.RepositoriesViewTagsSorter"
+            sortOnly="true"
+            name="Sort Tags">
+         <commonSorter
+               class="org.eclipse.egit.ui.internal.repository.tree.RepositoriesViewTagsSorter">
+            <parentExpression>
+                <instanceof
+                     value="org.eclipse.egit.ui.internal.repository.tree.TagsNode">
+                </instanceof>
+            </parentExpression>
+         </commonSorter>
       </navigatorContent>
       <commonFilter id="org.eclipse.egit.ui.repositoriesView.filters.remoteBranches"
           name="%RepoViewFilterRemoteBranches.label" description="%RepoViewFilterRemoteBranches.description" activeByDefault="false"
@@ -3251,7 +3271,7 @@
             <!-- Hide the "Content" tab of the "Available Customizations" dialog -->
             <property
                name="org.eclipse.ui.navigator.hideAvailableExtensionsTab"
-               value="true"/>
+               value="false"/>
             <!-- Hide the "Link with Editor" action from the toolbar of the viewer -->
             <property
                name="org.eclipse.ui.navigator.hideLinkWithEditorAction"
@@ -3325,6 +3345,9 @@
          <includes>
             <contentExtension
                   pattern="org.eclipse.egit.ui.RepositoriesViewContent">
+            </contentExtension>
+            <contentExtension
+                  pattern="org.eclipse.egit.ui.RepositoriesViewTagsSorter">
             </contentExtension>
             <contentExtension
                   pattern="org.eclipse.egit.ui.RepositoriesViewLinkHelper">
